@@ -17,6 +17,7 @@ class DConfig {
   /// 记录条数限制，默认100条
   final int maxLimit;
 
+  ///
   const DConfig({
     required this.reverse,
     required this.printNet,

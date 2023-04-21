@@ -13,6 +13,9 @@ class _MyHomePageState extends State<MyHomePage> {
   @override
   void initState() {
     super.initState();
+    WidgetsBinding.instance.addPostFrameCallback((timeStamp) {
+      DOverlayDebugView.show(context: context);
+    });
   }
 
   @override
@@ -22,6 +25,7 @@ class _MyHomePageState extends State<MyHomePage> {
         body: SafeArea(
           child: ListView(
             children: [
+              const SizedBox(height: 40),
               Center(
                 child: OutlinedButton(
                   onPressed: () {
@@ -33,6 +37,7 @@ class _MyHomePageState extends State<MyHomePage> {
                   child: const Text('print log'),
                 ),
               ),
+              const SizedBox(height: 40),
               Center(
                 child: OutlinedButton(
                   onPressed: () {
@@ -41,6 +46,7 @@ class _MyHomePageState extends State<MyHomePage> {
                   child: const Text('net log'),
                 ),
               ),
+              const SizedBox(height: 40),
             ],
           ),
         )

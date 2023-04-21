@@ -25,7 +25,7 @@ extension ExPrintType on PrintType {
       case PrintType.debug:
         return "[Debug]";
       case PrintType.info:
-        return "[INFO]";
+        return "[Info]";
       case PrintType.warn:
         return "[Warn]";
       case PrintType.error:
