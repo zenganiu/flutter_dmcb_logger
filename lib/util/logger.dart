@@ -18,22 +18,19 @@ class DLogger {
     maxLimit: 100,
   );
 
+  /// 清空所有日志
+  static void clear() {
+    _Logger.clear();
+  }
+
   /// info信息
   ///
   /// [message] 内容
   /// [title] 标题
   /// [hasPrintLog] 是否打印日志
   /// [hasWriteLog] 是否写入日志
-  static void log(Object message, {String title = '', bool hasPrintLog = true, hasWriteLog = true}) {
-    if (enabled) {
-      PrintEntity.add(
-        type: PrintType.log,
-        content: message,
-        title: title,
-        hasPrintLog: hasPrintLog,
-        hasWriteLog: hasWriteLog,
-      );
-    }
+  static void info(Object message, {String title = '', bool hasPrintLog = true, hasWriteLog = true}) {
+    _Logger.info(message, title: title, hasPrintLog: hasPrintLog, hasWriteLog: hasWriteLog);
   }
 
   /// 调试信息
@@ -43,15 +40,7 @@ class DLogger {
   /// [hasPrintLog] 是否打印日志
   /// [hasWriteLog] 是否写入日志
   static void debug(Object message, {String title = '', bool hasPrintLog = true, hasWriteLog = true}) {
-    if (enabled) {
-      PrintEntity.add(
-        type: PrintType.debug,
-        content: message,
-        title: title,
-        hasPrintLog: hasPrintLog,
-        hasWriteLog: hasWriteLog,
-      );
-    }
+    _Logger.debug(message, title: title, hasPrintLog: hasPrintLog, hasWriteLog: hasWriteLog);
   }
 
   /// 警告信息
@@ -61,15 +50,7 @@ class DLogger {
   /// [hasPrintLog] 是否打印日志
   /// [hasWriteLog] 是否写入日志
   static void warn(Object message, {String title = '', bool hasPrintLog = true, hasWriteLog = true}) {
-    if (enabled) {
-      PrintEntity.add(
-        type: PrintType.warn,
-        content: message,
-        title: title,
-        hasPrintLog: hasPrintLog,
-        hasWriteLog: hasWriteLog,
-      );
-    }
+    _Logger.warn(message, title: title, hasPrintLog: hasPrintLog, hasWriteLog: hasWriteLog);
   }
 
   /// 错误信息
@@ -79,21 +60,7 @@ class DLogger {
   /// [hasPrintLog] 是否打印日志
   /// [hasWriteLog] 是否写入日志
   static void error(Object message, {String title = '', bool hasPrintLog = true, hasWriteLog = true}) {
-    if (enabled) {
-      PrintEntity.add(
-        type: PrintType.error,
-        content: message,
-        title: title,
-        hasPrintLog: hasPrintLog,
-        hasWriteLog: hasWriteLog,
-      );
-    }
-  }
-
-  /// 清空所有日志
-  static void clear() {
-    PrintEntity.clear();
-    NetEntity.clear();
+    _Logger.error(message, title: title, hasPrintLog: hasPrintLog, hasWriteLog: hasWriteLog);
   }
 
   /// 接口日志
@@ -122,7 +89,93 @@ class DLogger {
     bool? printLog,
     bool? writeLog,
   }) {
-    if (enabled) {
+    _Logger.net(
+      api: api,
+      url: url,
+      method: method,
+      headers: headers,
+      parameters: parameters,
+      responseBody: responseBody,
+      spendTime: spendTime,
+      statusCode: statusCode,
+      showDetail: showDetail,
+      printLog: printLog,
+      writeLog: writeLog,
+    );
+  }
+}
+
+class _Logger {
+  const _Logger._();
+
+  /// 清空所有日志
+  static void clear() {
+    PrintEntity.clear();
+    NetEntity.clear();
+  }
+
+  static void debug(Object message, {String title = '', bool hasPrintLog = true, hasWriteLog = true}) {
+    if (DLogger.enabled) {
+      PrintEntity.add(
+        type: PrintType.debug,
+        content: message,
+        title: title,
+        hasPrintLog: hasPrintLog,
+        hasWriteLog: hasWriteLog,
+      );
+    }
+  }
+
+  static void info(Object message, {String title = '', bool hasPrintLog = true, hasWriteLog = true}) {
+    if (DLogger.enabled) {
+      PrintEntity.add(
+        type: PrintType.info,
+        content: message,
+        title: title,
+        hasPrintLog: hasPrintLog,
+        hasWriteLog: hasWriteLog,
+      );
+    }
+  }
+
+  static void warn(Object message, {String title = '', bool hasPrintLog = true, hasWriteLog = true}) {
+    if (DLogger.enabled) {
+      PrintEntity.add(
+        type: PrintType.warn,
+        content: message,
+        title: title,
+        hasPrintLog: hasPrintLog,
+        hasWriteLog: hasWriteLog,
+      );
+    }
+  }
+
+  static void error(Object message, {String title = '', bool hasPrintLog = true, hasWriteLog = true}) {
+    if (DLogger.enabled) {
+      PrintEntity.add(
+        type: PrintType.error,
+        content: message,
+        title: title,
+        hasPrintLog: hasPrintLog,
+        hasWriteLog: hasWriteLog,
+      );
+    }
+  }
+
+  static void net({
+    required String api,
+    String url = '',
+    String method = '',
+    Object headers = '',
+    Object parameters = '',
+    Object responseBody = '',
+    int spendTime = 0,
+    int statusCode = 100,
+    bool showDetail = false,
+    bool? printLog,
+    bool? writeLog,
+  }) {
+    if (DLogger.enabled) {
       NetEntity.net(
         type: NetType.http,
         api: api,

@@ -32,7 +32,7 @@ class PrintEntity {
   /// [hasPrintLog] 是否控制台打印
   /// [hasWriteLog] 是否写入记录日志
   static void add({
-    PrintType type = PrintType.log,
+    PrintType type = PrintType.info,
     String title = '',
     required Object content,
     bool? hasPrintLog,
