@@ -65,7 +65,7 @@ class _NetViewState extends State<NetView> {
                 final len = logs.length;
                 return ListView.separated(
                   itemBuilder: (context, index) {
-                    final item = DLogger.config.reverse ? logs[len - index - 1] : logs[index];
+                    final item = DLogger.config.hasReverse ? logs[len - index - 1] : logs[index];
                     return NetCell(data: item);
                   },
                   itemCount: len,

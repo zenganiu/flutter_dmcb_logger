@@ -111,7 +111,7 @@ class NetEntity extends ChangeNotifier {
       length.value++;
     }
 
-    if (writeLog == true || (writeLog == null && DLogger.config.printNet)) {
+    if (writeLog == true || (writeLog == null && DLogger.config.hasPrintNet)) {
       final StringBuffer sb = StringBuffer();
       sb.writeln('${net.type.printFlag()}[${net.startTime}] [$method]${net.api}');
       sb.write('\nHeader: ${net.headers}');

@@ -8,15 +8,38 @@ import 'package:flutter_dmcb_logger/util/helper.dart';
 class DLogger {
   const DLogger._();
 
-  static bool enabled = true;
-  static DConfig config = const DConfig(
-    reverse: true,
-    printNet: true,
-    hasPrintLog: true,
-    hasWriteLog: true,
-    hasWriteNet: true,
-    maxLimit: 100,
-  );
+  static bool get enabled => _Logger.enabled;
+  static DConfig get config => _Logger.config;
+
+  /// 设置日志是否可用
+  ///
+  /// [hasEnabled] 是否可以用
+  static void setLogEnabled(bool hasEnabled) => _Logger.setLogEnabled(hasEnabled);
+
+  /// 设置日志配置信息
+  ///
+  /// [hasReverse] 日志记录反转
+  /// [hasPrintNet] 是否控制台输出网络接口日志
+  /// [hasPrintLog] 是否控制台输出日志
+  /// [hasWriteLog] 是否写入日志记录
+  /// [hasWriteNet] 是否写入网络接口日志
+  /// [maxLimit] 记录条数限制，默认100条
+  static void setLogConfig({
+    bool? hasReverse,
+    bool? hasPrintNet,
+    bool? hasPrintLog,
+    bool? hasWriteLog,
+    bool? hasWriteNet,
+    int? maxLimit,
+  }) =>
+      _Logger.setLogConfig(
+        hasReverse: hasReverse,
+        hasPrintNet: hasPrintNet,
+        hasPrintLog: hasPrintLog,
+        hasWriteLog: hasWriteLog,
+        hasWriteNet: hasWriteNet,
+        maxLimit: maxLimit,
+      );
 
   /// 清空所有日志
   static void clear() {
@@ -107,6 +130,41 @@ class DLogger {
 
 class _Logger {
   const _Logger._();
+
+  static bool enabled = true;
+  static DConfig config = const DConfig(
+    hasReverse: true,
+    hasPrintNet: true,
+    hasPrintLog: true,
+    hasWriteLog: true,
+    hasWriteNet: true,
+    maxLimit: 100,
+  );
+
+  /// 设置日志是否可用
+  static void setLogEnabled(bool hasEnabled) {
+    enabled = hasEnabled;
+  }
+
+  /// 设置日志配置信息
+  static void setLogConfig({
+    /// 日志记录反转
+    bool? hasReverse,
+    bool? hasPrintNet,
+    bool? hasPrintLog,
+    bool? hasWriteLog,
+    bool? hasWriteNet,
+    int? maxLimit,
+  }) {
+    config = config.copyWith(
+      hasReverse: hasReverse,
+      hasPrintNet: hasPrintNet,
+      hasPrintLog: hasPrintLog,
+      hasWriteLog: hasWriteLog,
+      hasWriteNet: hasWriteNet,
+      maxLimit: maxLimit,
+    );
+  }
 
   /// 清空所有日志
   static void clear() {

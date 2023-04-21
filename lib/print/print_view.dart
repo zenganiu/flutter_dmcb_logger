@@ -49,7 +49,7 @@ class _PrintViewState extends State<PrintView> {
                 final len = logs.length;
                 return ListView.separated(
                   itemBuilder: (context, index) {
-                    final item = DLogger.config.reverse ? logs[len - index - 1] : logs[index];
+                    final item = DLogger.config.hasReverse ? logs[len - index - 1] : logs[index];
                     return PrintCell(data: item);
                   },
                   itemCount: len,

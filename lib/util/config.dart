@@ -1,9 +1,9 @@
 class DConfig {
   /// 日志记录反转
-  final bool reverse;
+  final bool hasReverse;
 
   /// 是否控制台输出网络接口日志
-  final bool printNet;
+  final bool hasPrintNet;
 
   /// 是否控制台输出日志
   final bool hasPrintLog;
@@ -19,8 +19,8 @@ class DConfig {
 
   ///
   const DConfig({
-    required this.reverse,
-    required this.printNet,
+    required this.hasReverse,
+    required this.hasPrintNet,
     required this.hasPrintLog,
     required this.hasWriteLog,
     required this.hasWriteNet,
@@ -28,16 +28,16 @@ class DConfig {
   });
 
   DConfig copyWith({
-    bool? reverse,
-    bool? printNet,
+    bool? hasReverse,
+    bool? hasPrintNet,
     bool? hasPrintLog,
     bool? hasWriteLog,
     bool? hasWriteNet,
     int? maxLimit,
   }) {
     return DConfig(
-      reverse: reverse ?? this.reverse,
-      printNet: printNet ?? this.printNet,
+      hasReverse: hasReverse ?? this.hasReverse,
+      hasPrintNet: hasPrintNet ?? this.hasPrintNet,
       hasPrintLog: hasPrintLog ?? this.hasPrintLog,
       hasWriteLog: hasWriteLog ?? this.hasWriteLog,
       hasWriteNet: hasWriteNet ?? this.hasWriteNet,
