@@ -106,7 +106,30 @@ class _MyHomePageState extends State<MyHomePage> {
               Center(
                 child: OutlinedButton(
                   onPressed: () {
-                    DLogger.net(api: 'api');
+                    DLogger.net(
+                      api: 'http://app-gw-dev.dm-cube.com/app-gw/config/getCountDownConfig',
+                      url: 'http://app-gw-dev.dm-cube.com/app-gw/config/getCountDownConfig',
+                      method: 'POST',
+                      headers: {
+                        "content-type": "application/json;charset=utf-8",
+                        "X-DEVICE-ID": "",
+                        "X-APP-VERSION": "3.7.10",
+                        "X-LOGIN-TYPE": "app",
+                        "X-DEVICE-TYPE": "2",
+                        "X-USER-AGENT":
+                            "Mozilla/5.0 (iPhone; CPU iPhone OS 13_7 like Mac OS X) AppleWebKit/605.1.15 (KHTML, like Gecko) Mobile/15E148",
+                        "X-LONGITUDE": 113.31634307077927,
+                        "X-LATITUDE": 23.123067240730254,
+                        "X-CITY": "5bm/5bee5biC",
+                        "X-CHANNEL-CODE": "AppStore"
+                      },
+                      parameters: '{}',
+                      responseBody: {
+                        "code": "00000",
+                        "message": "成功",
+                        "payload": {"enable": true, "countDown": 5, "deadline": 18000000}
+                      },
+                    );
                   },
                   child: const Text('net log'),
                 ),
