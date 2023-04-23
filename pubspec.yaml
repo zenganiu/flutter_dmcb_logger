@@ -1,7 +1,7 @@
 name: flutter_dmcb_logger
 description: A new flutter logger
 version: 0.0.1
-homepage:
+homepage: https://github.com/zenganiu/flutter_dmcb_logger
 
 environment:
   sdk: '>=2.19.6 <3.0.0'
