@@ -245,8 +245,8 @@ class _Logger {
         spendTime: spendTime,
         statusCode: statusCode,
         showDetail: showDetail,
-        printLog: printLog,
-        writeLog: writeLog,
+        hasPrintNet: printLog,
+        hasWriteNet: writeLog,
       );
     }
   }

@@ -26,13 +26,78 @@ class _MyHomePageState extends State<MyHomePage> {
           child: ListView(
             children: [
               const SizedBox(height: 40),
+              Row(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: [
+                  const Text('日志总开关'),
+                  Switch(
+                    value: DLogger.enabled,
+                    onChanged: (st) {
+                      DLogger.setLogEnabled(st);
+                      setState(() {});
+                    },
+                  ),
+                ],
+              ),
+              Row(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: [
+                  const Text('console log'),
+                  Switch(
+                    value: DLogger.config.hasPrintLog,
+                    onChanged: (st) {
+                      DLogger.setLogConfig(hasPrintLog: st);
+                      setState(() {});
+                    },
+                  ),
+                ],
+              ),
+              Row(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: [
+                  const Text('write log'),
+                  Switch(
+                    value: DLogger.config.hasWriteLog,
+                    onChanged: (st) {
+                      DLogger.setLogConfig(hasWriteLog: st);
+                      setState(() {});
+                    },
+                  ),
+                ],
+              ),
+              Row(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: [
+                  const Text('net log'),
+                  Switch(
+                    value: DLogger.config.hasPrintNet,
+                    onChanged: (st) {
+                      DLogger.setLogConfig(hasPrintNet: st);
+                      setState(() {});
+                    },
+                  ),
+                ],
+              ),
+              Row(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: [
+                  const Text('write net'),
+                  Switch(
+                    value: DLogger.config.hasWriteNet,
+                    onChanged: (st) {
+                      DLogger.setLogConfig(hasWriteNet: st);
+                      setState(() {});
+                    },
+                  ),
+                ],
+              ),
               Center(
                 child: OutlinedButton(
                   onPressed: () {
-                    DLogger.info('213312', title: 'info');
-                    DLogger.debug('123132', title: 'debug');
-                    DLogger.warn('123132', title: 'warn');
-                    DLogger.error('123123', title: 'error');
+                    DLogger.info('info123456', title: 'info');
+                    DLogger.debug('debug654', title: 'debug');
+                    DLogger.warn('warn963', title: 'warn');
+                    DLogger.error('error741', title: 'error');
                   },
                   child: const Text('print log'),
                 ),

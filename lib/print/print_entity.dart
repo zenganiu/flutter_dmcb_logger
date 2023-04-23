@@ -46,13 +46,13 @@ class PrintEntity {
       showDetail: false,
     );
 
-    if (hasWriteLog == true || (hasWriteLog == null && DLogger.config.hasWriteLog)) {
+    if (hasWriteLog == true && DLogger.config.hasWriteLog) {
       list.add(logEntity);
       _clearWhenTooMuch();
       length.value++;
     }
 
-    if (hasPrintLog == true || (hasPrintLog == null && DLogger.config.hasPrintLog)) {
+    if (hasPrintLog == true && DLogger.config.hasPrintLog) {
       final StringBuffer sb = StringBuffer();
       sb.writeln("${logEntity.type.printFlag()}[${logEntity.startTime.toString()}][${DHelper.getNavigationFile()}]");
       if (logEntity.title.isNotEmpty) sb.writeln(title);

@@ -1,3 +1,4 @@
+/// config
 class DConfig {
   /// 日志记录反转
   final bool hasReverse;
@@ -17,7 +18,7 @@ class DConfig {
   /// 记录条数限制，默认100条
   final int maxLimit;
 
-  ///
+  /// initial
   const DConfig({
     required this.hasReverse,
     required this.hasPrintNet,
@@ -27,6 +28,7 @@ class DConfig {
     required this.maxLimit,
   });
 
+  /// copy
   DConfig copyWith({
     bool? hasReverse,
     bool? hasPrintNet,

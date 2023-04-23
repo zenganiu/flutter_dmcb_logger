@@ -87,8 +87,8 @@ class NetEntity extends ChangeNotifier {
     int spendTime = 0,
     int statusCode = 100,
     bool showDetail = false,
-    bool? printLog,
-    bool? writeLog,
+    bool? hasPrintNet,
+    bool? hasWriteNet,
   }) {
     final net = NetEntity(
       type: type,
@@ -104,14 +104,14 @@ class NetEntity extends ChangeNotifier {
       startTime: DateTime.now(),
     );
 
-    if (printLog == true || (printLog == null && DLogger.config.hasPrintLog)) {
+    if (hasWriteNet == true && DLogger.config.hasWriteNet) {
       list.add(net);
       _map[api] = net;
       _clearWhenTooMuch();
       length.value++;
     }
 
-    if (writeLog == true || (writeLog == null && DLogger.config.hasPrintNet)) {
+    if (hasPrintNet == true && DLogger.config.hasPrintNet) {
       final StringBuffer sb = StringBuffer();
       sb.writeln('${net.type.printFlag()}[${net.startTime}] [$method]${net.api}');
       sb.write('\nHeader: ${net.headers}');
@@ -121,6 +121,7 @@ class NetEntity extends ChangeNotifier {
     }
   }
 
+  ///
   static void netRequest() {}
 
   /// 日志条数判断，超限制清除多余
