@@ -68,7 +68,7 @@ class _MyHomePageState extends State<MyHomePage> {
               Row(
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
-                  const Text('net log'),
+                  const Text('print net'),
                   Switch(
                     value: DLogger.config.hasPrintNet,
                     onChanged: (st) {

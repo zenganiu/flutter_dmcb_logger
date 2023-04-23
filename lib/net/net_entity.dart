@@ -104,6 +104,7 @@ class NetEntity extends ChangeNotifier {
       startTime: DateTime.now(),
     );
 
+    //
     if (hasWriteNet == true && DLogger.config.hasWriteNet) {
       list.add(net);
       _map[api] = net;
@@ -111,6 +112,7 @@ class NetEntity extends ChangeNotifier {
       length.value++;
     }
 
+    //
     if (hasPrintNet == true && DLogger.config.hasPrintNet) {
       final StringBuffer sb = StringBuffer();
       sb.writeln('${net.type.printFlag()}[${net.startTime}] [$method]${net.api}');

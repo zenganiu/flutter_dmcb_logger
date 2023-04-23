@@ -97,8 +97,8 @@ class DLogger {
   /// [spendTime] 花费时间
   /// [statusCode] 请求状态码
   /// [showDetail] 是否展开
-  /// [printLog] 是否打印日志
-  /// [writeLog] 是否写入日志
+  /// [hasPrintNet] 是否打印日志
+  /// [hasWriteNet] 是否写入日志
   static void net({
     required String api,
     String url = '',
@@ -109,8 +109,8 @@ class DLogger {
     int spendTime = 0,
     int statusCode = 100,
     bool showDetail = false,
-    bool? printLog,
-    bool? writeLog,
+    bool? hasPrintNet = true,
+    bool? hasWriteNet = true,
   }) {
     _Logger.net(
       api: api,
@@ -122,8 +122,8 @@ class DLogger {
       spendTime: spendTime,
       statusCode: statusCode,
       showDetail: showDetail,
-      printLog: printLog,
-      writeLog: writeLog,
+      hasPrintNet: hasPrintNet,
+      hasWriteNet: hasWriteNet,
     );
   }
 }
@@ -134,9 +134,9 @@ class _Logger {
   static bool enabled = true;
   static DConfig config = const DConfig(
     hasReverse: true,
-    hasPrintNet: true,
     hasPrintLog: true,
     hasWriteLog: true,
+    hasPrintNet: true,
     hasWriteNet: true,
     maxLimit: 100,
   );
@@ -230,8 +230,8 @@ class _Logger {
     int spendTime = 0,
     int statusCode = 100,
     bool showDetail = false,
-    bool? printLog,
-    bool? writeLog,
+    bool? hasPrintNet = true,
+    bool? hasWriteNet = true,
   }) {
     if (DLogger.enabled) {
       NetEntity.net(
@@ -245,8 +245,8 @@ class _Logger {
         spendTime: spendTime,
         statusCode: statusCode,
         showDetail: showDetail,
-        hasPrintNet: printLog,
-        hasWriteNet: writeLog,
+        hasPrintNet: hasPrintNet,
+        hasWriteNet: hasWriteNet,
       );
     }
   }
