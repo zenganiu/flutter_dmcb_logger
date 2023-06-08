@@ -48,7 +48,13 @@ class _NetCellState extends State<NetCell> {
           children: [
             const Divider(),
             const Text('Url:', style: TextStyle(fontSize: 14, color: Colors.purple)),
-            _CopyText(content: item.url, title: '请求地址'),
+            _CopyText(
+              content: item.url,
+              title: '请求地址',
+              onTapCopy: () {
+                showToast('请求地址复制成功', context);
+              },
+            ),
             const SizedBox(height: 12),
             const Text('Header:', style: TextStyle(fontSize: 14, color: Colors.red)),
             _CopyTextAndButton(
