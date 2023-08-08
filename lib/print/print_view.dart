@@ -13,16 +13,16 @@ class PrintView extends StatefulWidget {
 
 class _PrintViewState extends State<PrintView> {
   bool _showSearch = false;
-  String _keyword = "";
+  String keyword = "";
   late TextEditingController _textController;
   late ScrollController _scrollController;
   late FocusNode _focusNode;
   bool _goDown = true;
-  final List<PrintType> _selectTypes = PrintType.values;
+  List<PrintType> selectTypes = PrintType.values;
 
   @override
   void initState() {
-    _textController = TextEditingController(text: _keyword);
+    _textController = TextEditingController(text: keyword);
     _scrollController = ScrollController();
     _focusNode = FocusNode();
     super.initState();
@@ -40,16 +40,16 @@ class _PrintViewState extends State<PrintView> {
               valueListenable: PrintEntity.length,
               builder: (context, value, child) {
                 List<PrintEntity> logs = PrintEntity.list;
-                if (_selectTypes.length < 4 || _keyword.isNotEmpty) {
-                  logs = PrintEntity.list.where((test) {
-                    return _selectTypes.contains(test.type) && test.contains(_keyword);
-                  }).toList();
+                if (keyword.isNotEmpty && logs.isNotEmpty) {
+                  logs = logs.where((e) => e.contains(keyword)).toList();
                 }
-
+                if (selectTypes.length < PrintType.values.length && logs.isNotEmpty) {
+                  logs = logs.where((e) => selectTypes.contains(e.type)).toList();
+                }
                 final len = logs.length;
                 return ListView.separated(
                   itemBuilder: (context, index) {
-                    final item = DLogger.config.reverse ? logs[len - index - 1] : logs[index];
+                    final item = DLogger.config.hasReverse ? logs[len - index - 1] : logs[index];
                     return PrintCell(data: item);
                   },
                   itemCount: len,
@@ -96,12 +96,19 @@ class _PrintViewState extends State<PrintView> {
           (e) => ChoiceChip(
             label: Text(
               e.tabFlag().replaceAll(RegExp(r"\[|\]"), ''),
-              style: const TextStyle(fontSize: 14),
+              style: TextStyle(
+                fontSize: 14,
+                color: selectTypes.contains(e) ? Colors.white : Colors.black,
+              ),
             ),
-            selectedColor: const Color(0xFFCBE2F6),
-            selected: _selectTypes.contains(e),
+            selectedColor: Colors.blue,
+            selected: selectTypes.contains(e),
             onSelected: (value) {
-              _selectTypes.contains(e) ? _selectTypes.remove(e) : _selectTypes.add(e);
+              if (selectTypes.contains(e)) {
+                selectTypes = selectTypes.where((element) => element != e).toList();
+              } else {
+                selectTypes = [...selectTypes, e];
+              }
               setState(() {});
             },
           ),
@@ -126,7 +133,7 @@ class _PrintViewState extends State<PrintView> {
               onPressed: PrintEntity.clear,
             ),
             IconButton(
-              icon: _keyword.isEmpty ? const Icon(Icons.search) : const Icon(Icons.filter_1),
+              icon: keyword.isEmpty ? const Icon(Icons.search) : const Icon(Icons.filter_1),
               onPressed: () {
                 _showSearch = true;
                 setState(() {});
@@ -154,7 +161,7 @@ class _PrintViewState extends State<PrintView> {
               icon: const Icon(Icons.search),
               onPressed: () {
                 _showSearch = false;
-                _keyword = _textController.text;
+                keyword = _textController.text;
                 setState(() {});
               },
             ),

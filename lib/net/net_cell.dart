@@ -48,71 +48,63 @@ class _NetCellState extends State<NetCell> {
           children: [
             const Divider(),
             const Text('Url:', style: TextStyle(fontSize: 14, color: Colors.purple)),
-            GestureDetector(
-              child: Text(
-                item.url,
-                style: const TextStyle(fontSize: 14, color: Colors.black),
-              ),
-              onTap: () async {
-                await DHelper.copyText(item.url);
-                showToast('请求地址复制成功');
+            _CopyText(
+              content: item.url,
+              title: '请求地址',
+              onTapCopy: () {
+                showToast('请求地址复制成功', context);
               },
             ),
-            const Divider(),
+            const SizedBox(height: 12),
             const Text('Header:', style: TextStyle(fontSize: 14, color: Colors.red)),
-            GestureDetector(
-              child: Text(
-                item.headers,
-                style: const TextStyle(fontSize: 14, color: Colors.black),
-              ),
-              onTap: () async {
-                await DHelper.copyText(item.headers);
-                showToast('请求头参数复制成功');
+            _CopyTextAndButton(
+              title: '请求头参数',
+              content: item.headers,
+              onTapCopy: () {
+                showToast('请求头参数复制成功', context);
+              },
+              onTapButton: () {
+                Navigator.push(context, MaterialPageRoute(builder: (ctx) {
+                  return DJsonViewPage(title: item.api, jsonString: item.headers);
+                }));
               },
             ),
-            const Divider(),
+            const SizedBox(height: 12),
             const Text('Parameters:', style: TextStyle(fontSize: 14, color: Colors.blue)),
-            GestureDetector(
-              child: Text(
-                item.parameters,
-                style: const TextStyle(fontSize: 14, color: Colors.black),
-              ),
-              onTap: () async {
-                await DHelper.copyText(item.parameters);
-                showToast('请求参数复制成功');
+            _CopyTextAndButton(
+              title: '请求参数',
+              content: item.parameters,
+              onTapCopy: () {
+                showToast('请求参数复制成功', context);
+              },
+              onTapButton: () {
+                Navigator.push(context, MaterialPageRoute(builder: (ctx) {
+                  return DJsonViewPage(title: item.api, jsonString: item.parameters);
+                }));
               },
             ),
-            const Divider(),
+            const SizedBox(height: 12),
             const Text('\nResponseBody:', style: TextStyle(fontSize: 14, color: Colors.pink)),
-            OutlinedButton(
-                onPressed: () {
-                  Navigator.push(context, MaterialPageRoute(builder: (ctx) {
-                    return DJsonViewPage(title: item.api, jsonString: item.responseBody);
-                  }));
-                },
-                child: const Text('查看详情')),
-            // SelectableText(
-            //   item.responseBody,
-            //   style: const TextStyle(fontSize: 14, color: Colors.black),
-            //   toolbarOptions: const ToolbarOptions(copy: true, selectAll: true),
-            // ),
+            _CopyTextAndButton(
+              title: '响应结果',
+              content: item.responseBody,
+              onTapCopy: () {
+                showToast('响应结果复制成功', context);
+              },
+              onTapButton: () {
+                Navigator.push(context, MaterialPageRoute(builder: (ctx) {
+                  return DJsonViewPage(title: item.api, jsonString: item.responseBody);
+                }));
+              },
+            ),
+            const SizedBox(height: 12),
           ],
         )
       ],
     );
   }
 
-  Color _getColor(int status) {
-    if (status == 200 || status == 0) {
-      return Colors.green;
-    } else if (status < 200) {
-      return Colors.blue;
-    } else {
-      return Colors.red;
-    }
-  }
-
-  void showToast(String title) {
+  void showToast(String title, BuildContext context) {
     showDialog(
       context: context,
       builder: (ctx) {
@@ -132,6 +124,84 @@ class _NetCellState extends State<NetCell> {
             ),
           ),
         );
+      },
+    );
+  }
+}
+
+Color _getColor(int status) {
+  if (status == 200 || status == 0) {
+    return Colors.green;
+  } else if (status < 200) {
+    return Colors.blue;
+  } else {
+    return Colors.red;
+  }
+}
+
+class _CopyTextAndButton extends StatelessWidget {
+  final String content;
+  final String title;
+  final void Function()? onTapCopy;
+  final void Function()? onTapButton;
+  const _CopyTextAndButton({
+    Key? key,
+    required this.content,
+    required this.title,
+    this.onTapCopy,
+    this.onTapButton,
+  }) : super(key: key);
+
+  @override
+  Widget build(BuildContext context) {
+    return Row(
+      children: [
+        Expanded(
+          child: GestureDetector(
+            onTap: () async {
+              await DHelper.copyText(content);
+              onTapCopy?.call();
+            },
+            child: Text(
+              content,
+              maxLines: 3,
+              overflow: TextOverflow.ellipsis,
+              textAlign: TextAlign.start,
+            ),
+          ),
+        ),
+        OutlinedButton(
+          onPressed: () {
+            onTapButton?.call();
+          },
+          child: const Text('更多'),
+        ),
+      ],
+    );
+  }
+}
+
+class _CopyText extends StatelessWidget {
+  final String content;
+  final String title;
+  final void Function()? onTapCopy;
+  const _CopyText({
+    Key? key,
+    required this.content,
+    required this.title,
+    this.onTapCopy,
+  }) : super(key: key);
+
+  @override
+  Widget build(BuildContext context) {
+    return GestureDetector(
+      child: Text(
+        content,
+        style: const TextStyle(fontSize: 14, color: Colors.black),
+      ),
+      onTap: () async {
+        await DHelper.copyText(content);
+        onTapCopy?.call();
       },
     );
   }

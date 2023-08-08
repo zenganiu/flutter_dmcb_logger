@@ -18,7 +18,7 @@ class _NetViewState extends State<NetView> {
   late ScrollController _scrollController;
   late FocusNode _focusNode;
   bool _goDown = true;
-  final List<String> _selectTypes = [NetEntity.all];
+  final List<String> selectTypes = [NetEntity.all];
 
   @override
   void initState() {
@@ -52,9 +52,9 @@ class _NetViewState extends State<NetView> {
               valueListenable: NetEntity.length,
               builder: (context, value, child) {
                 List<NetEntity> logs = NetEntity.list;
-                if (!_selectTypes.contains(NetEntity.all)) {
+                if (!selectTypes.contains(NetEntity.all)) {
                   logs = NetEntity.list.where((test) {
-                    return _selectTypes.contains(test.type.tabFlag()) && test.contains(_keyword);
+                    return selectTypes.contains(test.type.tabFlag()) && test.contains(_keyword);
                   }).toList();
                 } else if (_keyword.isNotEmpty) {
                   logs = NetEntity.list.where((test) {
@@ -65,7 +65,7 @@ class _NetViewState extends State<NetView> {
                 final len = logs.length;
                 return ListView.separated(
                   itemBuilder: (context, index) {
-                    final item = DLogger.config.reverse ? logs[len - index - 1] : logs[index];
+                    final item = DLogger.config.hasReverse ? logs[len - index - 1] : logs[index];
                     return NetCell(data: item);
                   },
                   itemCount: len,
@@ -110,11 +110,15 @@ class _NetViewState extends State<NetView> {
     final List<ChoiceChip> arr = NetEntity.types
         .map(
           (e) => ChoiceChip(
-            label: Text(e, style: const TextStyle(fontSize: 14)),
-            selectedColor: const Color(0xFFCBE2F6),
-            selected: _selectTypes.contains(e),
+            label: Text(e,
+                style: TextStyle(
+                  fontSize: 14,
+                  color: selectTypes.contains(e) ? Colors.white : Colors.black,
+                )),
+            selectedColor: Colors.blue,
+            selected: selectTypes.contains(e),
             onSelected: (value) {
-              _selectTypes.contains(e) ? _selectTypes.remove(e) : _selectTypes.add(e);
+              selectTypes.contains(e) ? selectTypes.remove(e) : selectTypes.add(e);
               setState(() {});
             },
           ),

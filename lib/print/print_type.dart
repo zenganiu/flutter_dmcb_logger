@@ -1,16 +1,16 @@
 import 'package:flutter/material.dart';
 
 /// 类型
-enum PrintType { log, debug, warn, error }
+enum PrintType { debug, info, warn, error }
 
 extension ExPrintType on PrintType {
   /// 日志打印标记
   String printFlag() {
     switch (this) {
-      case PrintType.log:
-        return "[LOG]";
       case PrintType.debug:
         return "[DEBUG]";
+      case PrintType.info:
+        return "[INFO]";
       case PrintType.warn:
         return "[WARN]";
       case PrintType.error:
@@ -22,10 +22,10 @@ extension ExPrintType on PrintType {
 
   String tabFlag() {
     switch (this) {
-      case PrintType.log:
-        return "[Log]";
       case PrintType.debug:
         return "[Debug]";
+      case PrintType.info:
+        return "[Info]";
       case PrintType.warn:
         return "[Warn]";
       case PrintType.error:

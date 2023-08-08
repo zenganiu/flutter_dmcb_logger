@@ -63,6 +63,12 @@ class DHelper {
 
   static String convertJsonString(Object value) {
     try {
+      if (value is String) {
+        final js = jsonDecode(value);
+        if (js is Map || js is List) {
+          return value;
+        }
+      }
       final jsStr = json.encode(value);
       return jsStr;
     } catch (e) {

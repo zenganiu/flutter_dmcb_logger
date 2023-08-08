@@ -32,7 +32,7 @@ class PrintEntity {
   /// [hasPrintLog] 是否控制台打印
   /// [hasWriteLog] 是否写入记录日志
   static void add({
-    PrintType type = PrintType.log,
+    PrintType type = PrintType.info,
     String title = '',
     required Object content,
     bool? hasPrintLog,
@@ -46,13 +46,13 @@ class PrintEntity {
       showDetail: false,
     );
 
-    if (hasWriteLog == true || (hasWriteLog == null && DLogger.config.hasWriteLog)) {
+    if (hasWriteLog == true && DLogger.config.hasWriteLog) {
       list.add(logEntity);
       _clearWhenTooMuch();
       length.value++;
     }
 
-    if (hasPrintLog == true || (hasPrintLog == null && DLogger.config.hasPrintLog)) {
+    if (hasPrintLog == true && DLogger.config.hasPrintLog) {
       final StringBuffer sb = StringBuffer();
       sb.writeln("${logEntity.type.printFlag()}[${logEntity.startTime.toString()}][${DHelper.getNavigationFile()}]");
       if (logEntity.title.isNotEmpty) sb.writeln(title);

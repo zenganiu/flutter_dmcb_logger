@@ -10,8 +10,9 @@ class DLoggerListPage extends StatelessWidget {
     return DefaultTabController(
       length: 2,
       child: Scaffold(
+        backgroundColor: const Color(0xfff3f3f3),
         appBar: AppBar(
-          backgroundColor: Colors.white,
+          backgroundColor: const Color(0xfff3f3f3),
           foregroundColor: Colors.black,
           title: const Text('Logger'),
           bottom: const TabBar(
