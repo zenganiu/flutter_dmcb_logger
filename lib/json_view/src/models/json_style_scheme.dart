@@ -28,8 +28,7 @@ class JsonQuotation {
         rightQuote = quote;
 
   /// arrow quotation
-  static JsonQuotation arrowQuote =
-      const JsonQuotation(leftQuote: '<', rightQuote: '>');
+  static JsonQuotation arrowQuote = const JsonQuotation(leftQuote: '<', rightQuote: '>');
 
   /// double quotation
   static JsonQuotation doubleQuote = const JsonQuotation.same('"');
@@ -37,18 +36,12 @@ class JsonQuotation {
   /// single quotation
   static JsonQuotation singleQuote = const JsonQuotation.same('\'');
 
-  bool get isEmpty =>
-      leftQuote == null ||
-      rightQuote == null ||
-      leftQuote!.isEmpty ||
-      rightQuote!.isEmpty;
+  bool get isEmpty => leftQuote == null || rightQuote == null || leftQuote!.isEmpty || rightQuote!.isEmpty;
   @override
   bool operator ==(Object other) {
     if (identical(this, other)) return true;
 
-    return other is JsonQuotation &&
-        other.leftQuote == leftQuote &&
-        other.rightQuote == rightQuote;
+    return other is JsonQuotation && other.leftQuote == leftQuote && other.rightQuote == rightQuote;
   }
 
   @override
