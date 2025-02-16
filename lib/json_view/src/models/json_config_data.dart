@@ -170,14 +170,4 @@ class JsonConfigData {
         other.animationCurve == animationCurve &&
         other.gap == gap;
   }
-
-  @override
-  int get hashCode => hashValues(
-        color,
-        style,
-        itemPadding,
-        animationDuration,
-        animationCurve,
-        gap,
-      );
 }

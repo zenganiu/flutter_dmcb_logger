@@ -94,17 +94,6 @@ class JsonColorScheme {
         other.markColor == markColor &&
         other.nullBackground == nullBackground;
   }
-
-  @override
-  int get hashCode => hashValues(
-        nullColor,
-        boolColor,
-        numColor,
-        stringColor,
-        normalColor,
-        markColor,
-        nullBackground,
-      );
 }
 
 /// default light color scheme

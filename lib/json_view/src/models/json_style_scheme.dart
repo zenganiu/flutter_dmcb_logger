@@ -43,9 +43,6 @@ class JsonQuotation {
 
     return other is JsonQuotation && other.leftQuote == leftQuote && other.rightQuote == rightQuote;
   }
-
-  @override
-  int get hashCode => hashValues(leftQuote, rightQuote);
 }
 
 /// json style scheem
