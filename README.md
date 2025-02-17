@@ -13,9 +13,7 @@
 在 `pubspec.yaml` 中添加
 ```yaml
 dependencies:
-  # 最新版本
-  flutter_dmcb_logger:
-    git: https://github.com/zenganiu/flutter_dmcb_logger.git
+  flutter_dmcb_logger: ^0.0.1
 ```
 
 ## IDEA使用`Grep Console`插件配置

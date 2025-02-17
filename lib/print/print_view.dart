@@ -5,7 +5,7 @@ import 'package:flutter_dmcb_logger/print/print_type.dart';
 import 'package:flutter_dmcb_logger/util/logger.dart';
 
 class PrintView extends StatefulWidget {
-  const PrintView({Key? key}) : super(key: key);
+  const PrintView({super.key});
 
   @override
   State<PrintView> createState() => _PrintViewState();
@@ -91,29 +91,28 @@ class _PrintViewState extends State<PrintView> {
   }
 
   Widget _buildTools() {
-    final List<ChoiceChip> arr = PrintType.values
-        .map(
-          (e) => ChoiceChip(
-            label: Text(
-              e.tabFlag().replaceAll(RegExp(r"\[|\]"), ''),
-              style: TextStyle(
-                fontSize: 14,
-                color: selectTypes.contains(e) ? Colors.white : Colors.black,
-              ),
+    final List<ChoiceChip> arr = [
+      for (final e in PrintType.values)
+        ChoiceChip.elevated(
+          label: Text(
+            e.tabFlag().replaceAll(RegExp(r"\[|\]"), ''),
+            style: TextStyle(
+              fontSize: 12,
+              color: selectTypes.contains(e) ? Colors.white : Colors.black,
             ),
-            selectedColor: Colors.blue,
-            selected: selectTypes.contains(e),
-            onSelected: (value) {
-              if (selectTypes.contains(e)) {
-                selectTypes = selectTypes.where((element) => element != e).toList();
-              } else {
-                selectTypes = [...selectTypes, e];
-              }
-              setState(() {});
-            },
           ),
+          selectedColor: Colors.blue,
+          selected: selectTypes.contains(e),
+          onSelected: (value) {
+            if (selectTypes.contains(e)) {
+              selectTypes = selectTypes.where((element) => element != e).toList();
+            } else {
+              selectTypes = [...selectTypes, e];
+            }
+            setState(() {});
+          },
         )
-        .toList();
+    ];
 
     return Padding(
       padding: const EdgeInsets.fromLTRB(16, 5, 0, 5),

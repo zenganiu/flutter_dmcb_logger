@@ -10,10 +10,10 @@ class ArrowWidget extends StatelessWidget {
   final bool expanded;
 
   const ArrowWidget({
-    Key? key,
+    super.key,
     this.onTap,
     this.expanded = false,
-  }) : super(key: key);
+  });
 
   @override
   Widget build(BuildContext context) {

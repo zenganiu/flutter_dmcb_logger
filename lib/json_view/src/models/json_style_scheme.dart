@@ -42,6 +42,7 @@ class JsonQuotation {
       rightQuote == null ||
       leftQuote!.isEmpty ||
       rightQuote!.isEmpty;
+
   @override
   bool operator ==(Object other) {
     if (identical(this, other)) return true;
@@ -52,7 +53,7 @@ class JsonQuotation {
   }
 
   @override
-  int get hashCode => hashValues(leftQuote, rightQuote);
+  int get hashCode => leftQuote.hashCode ^ rightQuote.hashCode;
 }
 
 /// json style scheem

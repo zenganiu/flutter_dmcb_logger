@@ -23,13 +23,13 @@ class ListTile extends StatefulWidget {
   final bool expanded;
   final int depth;
   const ListTile({
-    Key? key,
+    super.key,
     required this.keyName,
     required this.items,
     required this.range,
     this.expanded = false,
     required this.depth,
-  }) : super(key: key);
+  });
 
   @override
   State<ListTile> createState() => _ListTileState();

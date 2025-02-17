@@ -34,7 +34,7 @@ class JsonColorScheme {
   /// * normalColor
   /// * markColor
   /// * nullBackground
-  /// 
+  ///
   /// {@endtemplate}
   const JsonColorScheme({
     this.nullColor,
@@ -96,15 +96,14 @@ class JsonColorScheme {
   }
 
   @override
-  int get hashCode => hashValues(
-        nullColor,
-        boolColor,
-        numColor,
-        stringColor,
-        normalColor,
-        markColor,
-        nullBackground,
-      );
+  int get hashCode =>
+      nullColor.hashCode ^
+      boolColor.hashCode ^
+      numColor.hashCode ^
+      stringColor.hashCode ^
+      normalColor.hashCode ^
+      markColor.hashCode ^
+      nullBackground.hashCode;
 }
 
 /// default light color scheme

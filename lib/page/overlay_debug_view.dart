@@ -1,7 +1,5 @@
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
-import 'dart:ui' as ui;
-
 import 'package:flutter_dmcb_logger/page/logger_list_page.dart';
 
 var _hasShowLogPage = false;
@@ -11,12 +9,13 @@ class DOverlayDebugView extends StatefulWidget {
   final Offset offset;
   final double height;
   final OverlayEntry? overlayEntry;
+
   const DOverlayDebugView({
-    Key? key,
+    super.key,
     this.offset = const Offset(0, 300),
     this.height = 50,
     this.overlayEntry,
-  }) : super(key: key);
+  });
 
   static show({required BuildContext context}) {
     if (DOverlayDebugView.isShow || kReleaseMode) {
@@ -42,6 +41,7 @@ class _DOverlayDebugViewState extends State<DOverlayDebugView> {
   late Offset _offset;
   late double _height;
   late OverlayEntry? _overlayEntry;
+
   @override
   void initState() {
     super.initState();
@@ -73,14 +73,13 @@ class _DOverlayDebugViewState extends State<DOverlayDebugView> {
             double dx = 0;
             double dy = _offset.dy;
 
-            final size = ui.window.physicalSize / ui.window.devicePixelRatio;
-
+            final media = MediaQuery.of(context);
+            final size = media.size;
             if (_offset.dx >= size.width / 2 - widget.height / 2) {
               dx = size.width - widget.height;
             }
-
-            if (_offset.dy <= ui.window.padding.top) {
-              dy = ui.window.padding.top;
+            if (_offset.dy <= media.padding.top) {
+              dy = media.padding.top;
             }
             if (_offset.dy >= size.height - 88) {
               dy = size.height - 88;
