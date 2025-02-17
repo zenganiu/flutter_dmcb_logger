@@ -57,7 +57,7 @@ class JsonView extends StatelessWidget {
   ///
   /// see more [JsonConfig] to customize the view
   const JsonView({
-    Key? key,
+    super.key,
     required this.json,
     this.shrinkWrap = false,
     this.padding,
@@ -71,7 +71,7 @@ class JsonView extends StatelessWidget {
     this.animationDuration,
     this.animationCurve,
     this.gap,
-  }) : super(key: key);
+  });
 
   @override
   Widget build(BuildContext context) {
@@ -110,7 +110,7 @@ class JsonView extends StatelessWidget {
 class JsonViewBody extends StatelessWidget {
   /// use with caution, it will cause performance issue when json root items is too large
   const JsonViewBody({
-    Key? key,
+    super.key,
     required this.json,
     this.colorScheme,
     this.styleScheme,
@@ -119,7 +119,7 @@ class JsonViewBody extends StatelessWidget {
     this.animationDuration,
     this.animationCurve,
     this.gap,
-  }) : super(key: key);
+  });
 
   /// {@macro json_view.json_view.json}
   final dynamic json;

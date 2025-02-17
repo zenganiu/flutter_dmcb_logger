@@ -6,7 +6,7 @@ import 'net_entity.dart';
 import 'net_type.dart';
 
 class NetView extends StatefulWidget {
-  const NetView({Key? key}) : super(key: key);
+  const NetView({super.key});
   @override
   State<NetView> createState() => _NetViewState();
 }

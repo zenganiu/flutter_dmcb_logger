@@ -3,7 +3,7 @@ import 'package:flutter_dmcb_logger/net/net_view.dart';
 import 'package:flutter_dmcb_logger/print/print_view.dart';
 
 class DLoggerListPage extends StatelessWidget {
-  const DLoggerListPage({Key? key}) : super(key: key);
+  const DLoggerListPage({super.key});
 
   @override
   Widget build(BuildContext context) {

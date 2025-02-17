@@ -114,7 +114,8 @@ class JsonConfigData {
   /// default style scheme
   ///
   // original from #4
-  static JsonStyleScheme defaultStyle(BuildContext context) => const JsonStyleScheme(
+  static JsonStyleScheme defaultStyle(BuildContext context) =>
+      const JsonStyleScheme(
         keysStyle: TextStyle(),
         valuesStyle: TextStyle(),
         quotation: JsonQuotation(),
@@ -172,12 +173,12 @@ class JsonConfigData {
   }
 
   @override
-  int get hashCode => hashValues(
-        color,
-        style,
-        itemPadding,
-        animationDuration,
-        animationCurve,
-        gap,
-      );
+  int get hashCode =>
+      color.hashCode ^
+      style.hashCode ^
+      animation.hashCode ^
+      itemPadding.hashCode ^
+      animationDuration.hashCode ^
+      animationCurve.hashCode ^
+      gap.hashCode;
 }

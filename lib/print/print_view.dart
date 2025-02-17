@@ -5,7 +5,7 @@ import 'package:flutter_dmcb_logger/print/print_type.dart';
 import 'package:flutter_dmcb_logger/util/logger.dart';
 
 class PrintView extends StatefulWidget {
-  const PrintView({Key? key}) : super(key: key);
+  const PrintView({super.key});
 
   @override
   State<PrintView> createState() => _PrintViewState();
