@@ -5,7 +5,7 @@ import 'package:flutter_dmcb_logger/json_view/json_view.dart';
 class DJsonViewPage extends StatefulWidget {
   final String title;
   final String jsonString;
-  const DJsonViewPage({Key? key, this.title = 'json', this.jsonString = ''}) : super(key: key);
+  const DJsonViewPage({super.key, this.title = 'json', this.jsonString = ''});
 
   @override
   State<DJsonViewPage> createState() => _DJsonViewPageState();

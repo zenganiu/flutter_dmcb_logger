@@ -11,12 +11,12 @@ class MapTile extends StatefulWidget {
   final bool expanded;
   final int depth;
   const MapTile({
-    Key? key,
+    super.key,
     required this.keyName,
     required this.items,
     this.expanded = false,
     required this.depth,
-  }) : super(key: key);
+  });
 
   @override
   State<MapTile> createState() => _MapTileState();

@@ -6,8 +6,7 @@ import '../../json_view.dart';
 class StringTile extends StatefulWidget {
   final String keyName;
   final String value;
-  const StringTile({Key? key, required this.keyName, required this.value})
-      : super(key: key);
+  const StringTile({super.key, required this.keyName, required this.value});
 
   @override
   State<StringTile> createState() => _StringTileState();
@@ -54,7 +53,7 @@ class _StringTileState extends State<StringTile> {
         )..layout(minWidth: 0, maxWidth: double.infinity);
         final realRenderWidth = painter.width;
 
-        Widget selectedResult = _StringInnterTile(
+        Widget selectedResult = _StringInnerTile(
           keyName: widget.keyName,
           value: widget.value,
           onTap: () {
@@ -96,27 +95,24 @@ class _StringTileState extends State<StringTile> {
   }
 }
 
-class _StringInnterTile extends KeyValueTile {
-  const _StringInnterTile(
-      {required String keyName,
+class _StringInnerTile extends KeyValueTile {
+  const _StringInnerTile(
+      {required super.keyName,
       required String value,
-      int? maxLines,
-      VoidCallback? onTap})
+      super.maxLines,
+      super.onTap})
       : super(
-            keyName: keyName,
-            value: '"$value"',
-            maxLines: maxLines,
-            onTap: onTap);
+            value: '"$value"');
 
   @override
   Color valueColor(BuildContext context) =>
       colorScheme(context).stringColor ?? Colors.orange;
 }
 
-class _StringOnlyDisplayTile extends _StringInnterTile {
+class _StringOnlyDisplayTile extends _StringInnerTile {
   const _StringOnlyDisplayTile(
-      {required String keyName, required String value, VoidCallback? onTap})
-      : super(keyName: keyName, value: value, maxLines: 1, onTap: onTap);
+      {required super.keyName, required super.value, super.onTap})
+      : super(maxLines: 1);
   @override
   Widget build(BuildContext context) {
     final cs = colorScheme(context);

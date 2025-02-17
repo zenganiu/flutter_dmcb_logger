@@ -4,7 +4,8 @@ import 'package:flutter_dmcb_logger/print/print_type.dart';
 
 class PrintCell extends StatefulWidget {
   final PrintEntity data;
-  const PrintCell({Key? key, required this.data}) : super(key: key);
+
+  const PrintCell({super.key, required this.data});
 
   @override
   State<PrintCell> createState() => _PrintCellState();
@@ -12,6 +13,7 @@ class PrintCell extends StatefulWidget {
 
 class _PrintCellState extends State<PrintCell> {
   PrintEntity get item => widget.data;
+
   @override
   Widget build(BuildContext context) {
     return ExpansionTile(
@@ -33,7 +35,6 @@ class _PrintCellState extends State<PrintCell> {
       children: [
         SelectableText(
           item.content,
-          toolbarOptions: const ToolbarOptions(copy: true, selectAll: true),
           textAlign: TextAlign.start,
           style: TextStyle(fontSize: 14, color: item.type.color()),
         )

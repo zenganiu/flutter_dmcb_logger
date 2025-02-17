@@ -9,10 +9,10 @@ class JsonConfig extends InheritedWidget {
 
   /// configuration of json view
   const JsonConfig({
-    Key? key,
+    super.key,
     Widget? child,
     this.data,
-  }) : super(key: key, child: child ?? const SizedBox.shrink());
+  }) : super(child: child ?? const SizedBox.shrink());
   @override
   bool updateShouldNotify(JsonConfig oldWidget) => data != oldWidget.data;
 

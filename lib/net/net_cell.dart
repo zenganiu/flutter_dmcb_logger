@@ -5,7 +5,7 @@ import 'package:flutter_dmcb_logger/util/helper.dart';
 
 class NetCell extends StatefulWidget {
   final NetEntity data;
-  const NetCell({Key? key, required this.data}) : super(key: key);
+  const NetCell({super.key, required this.data});
 
   @override
   State<NetCell> createState() => _NetCellState();
@@ -145,12 +145,11 @@ class _CopyTextAndButton extends StatelessWidget {
   final void Function()? onTapCopy;
   final void Function()? onTapButton;
   const _CopyTextAndButton({
-    Key? key,
     required this.content,
     required this.title,
     this.onTapCopy,
     this.onTapButton,
-  }) : super(key: key);
+  });
 
   @override
   Widget build(BuildContext context) {
@@ -186,11 +185,10 @@ class _CopyText extends StatelessWidget {
   final String title;
   final void Function()? onTapCopy;
   const _CopyText({
-    Key? key,
     required this.content,
     required this.title,
     this.onTapCopy,
-  }) : super(key: key);
+  });
 
   @override
   Widget build(BuildContext context) {
