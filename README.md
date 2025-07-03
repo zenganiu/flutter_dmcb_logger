@@ -1,3 +1,5 @@
+## 已不在更新，请使用[flutter_base_logger](https://github.com/zenganiu/flutter_base_logger)
+
 # flutter_dmcb_logger
 [![License](https://img.shields.io/github/license/mashape/apistatus.svg)](https://github.com/zenganiu/flutter_dmcb_logger)
 ## **Flutter日志库**
